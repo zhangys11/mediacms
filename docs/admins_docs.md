@@ -40,6 +40,24 @@ cd /home/mediacms.io/mediacms/ && bash ./install.sh
 
 The script will ask if you have a URL where you want to deploy MediaCMS, otherwise it will use localhost. If you provide a URL, it will use Let's Encrypt service to install a valid ssl certificate.
 
+### WSL2 Ubuntu Specific
+
+```
+sudo mkdir /home/mediacms.io 
+sudo mount --bind /mnt/c/Users/eleve/Documents/codex/mediacms /home/mediacms.io/mediacms
+
+# change to linux line change to fix the " $'\r': command not found " error
+vim install.sh
+:set ff=unix
+:wq
+
+sudo bash ./install.sh
+```
+
+```
+wsl -l -v # list all linux systems
+
+```
 
 ### Update
 
