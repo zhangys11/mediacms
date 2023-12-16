@@ -40,7 +40,7 @@ cd /home/mediacms.io/mediacms/ && bash ./install.sh
 
 The script will ask if you have a URL where you want to deploy MediaCMS, otherwise it will use localhost. If you provide a URL, it will use Let's Encrypt service to install a valid ssl certificate.
 
-### WSL2 Ubuntu Specific
+### WSL2 Ubuntu-22.04 Specific
 
 ```
 sudo mkdir /home/mediacms.io 
