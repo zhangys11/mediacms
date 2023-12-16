@@ -30,9 +30,14 @@ else
     exit
 fi
 
-# install ffmpeg
-echo "Downloading and installing ffmpeg"
-wget -q https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+# install ffmpeg. The package is about 40MB, try local cache first.
+
+if [ ! -f ffmpeg-release-amd64-static.tar.xz ]; then
+    echo "Downloading ffmpeg ..."
+    wget -q https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+fi
+
+echo "Installing ffmpeg"
 mkdir -p tmp
 tar -xf ffmpeg-release-amd64-static.tar.xz --strip-components 1 -C tmp
 cp -v tmp/{ffmpeg,ffprobe,qt-faststart} /usr/local/bin
