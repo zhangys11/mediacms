@@ -62,6 +62,7 @@ cd /home/mediacms.io
 virtualenv . --python=python3
 source  /home/mediacms.io/bin/activate
 cd mediacms
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 pip install -r requirements.txt
 
 SECRET_KEY=`python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
@@ -141,7 +142,10 @@ fi
 # Bento4 utility installation, for HLS
 
 cd /home/mediacms.io/mediacms
-wget http://zebulon.bok.net/Bento4/binaries/Bento4-SDK-1-6-0-637.x86_64-unknown-linux.zip
+if [ ! -f Bento4-SDK-1-6-0-637.x86_64-unknown-linux.zip ]; then
+    wget http://zebulon.bok.net/Bento4/binaries/Bento4-SDK-1-6-0-637.x86_64-unknown-linux.zip
+fi
+
 unzip Bento4-SDK-1-6-0-637.x86_64-unknown-linux.zip
 mkdir /home/mediacms.io/mediacms/media_files/hls
 
