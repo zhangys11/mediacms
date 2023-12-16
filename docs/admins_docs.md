@@ -34,7 +34,7 @@ Automated script - tested on Ubuntu 20, Ubuntu 22 and Debian Buster
 
 ```bash
 mkdir /home/mediacms.io && cd /home/mediacms.io/
-git clone https://github.com/mediacms-io/mediacms
+git clone https://github.com/zhangys11/mediacms
 cd /home/mediacms.io/mediacms/ && bash ./install.sh
 ```
 
@@ -44,6 +44,7 @@ The script will ask if you have a URL where you want to deploy MediaCMS, otherwi
 
 ```
 sudo mkdir /home/mediacms.io 
+sudo mkdir /home/mediacms.io/mediacms 
 sudo mount --bind /mnt/c/Users/eleve/Documents/codex/mediacms /home/mediacms.io/mediacms
 
 # change to linux line change to fix the " $'\r': command not found " error
@@ -54,9 +55,10 @@ vim install.sh
 sudo bash ./install.sh
 ```
 
+Additional wsl commands to manage subsystems.  
 ```
-wsl -l -v # list all linux systems
-
+wsl -l -v # list all linux systems 
+wsl --unregister Ubuntu... # remove a system
 ```
 
 ### Update
