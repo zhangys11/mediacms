@@ -2,7 +2,8 @@
 
 ### **Requirements**
 
-- nodejs: version >= 14.17.0
+- nodejs: version >= 14.17.0   
+Recommend: 18.19.0 LTS 
 
 ---
 
