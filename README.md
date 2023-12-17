@@ -12,6 +12,27 @@ It is built mostly using the modern stack Django + React and includes a REST API
 
 A demo is available at https://demo.mediacms.io
 
+## Quick start using WSL2 Ubuntu-22.04
+
+``` 
+sudo mkdir /home/mediacms.io
+sudo cp -r /mnt/c/Users/eleve/Documents/codex/mediacms /home/mediacms.io
+
+# change to linux line change to fix the " $'\r': command not found " error
+vim install.sh
+:set ff=unix
+:wq
+
+sudo bash ./install.sh
+```
+
+After a restart, run `sudo sudo systemctl start nginx` or `sudo systemctl start mediacms`.
+
+Additional wsl commands to manage subsystems.  
+```
+wsl -l -v # list all linux systems 
+wsl --unregister Ubuntu... # remove a system
+```
 
 ## Screenshots
 
@@ -86,30 +107,6 @@ Visit [Releases Page](https://github.com/mediacms-io/mediacms/releases) for deta
 
 
 ## Installation / Maintanance
-
-### Quick Start using WSL2 Ubuntu-22.04
-
-``` 
-sudo mkdir /home/mediacms.io
-sudo cp -r /mnt/c/Users/eleve/Documents/codex/mediacms /home/mediacms.io
-
-# change to linux line change to fix the " $'\r': command not found " error
-vim install.sh
-:set ff=unix
-:wq
-
-sudo bash ./install.sh
-```
-
-After a restart, run `sudo sudo systemctl start nginx` or `sudo systemctl start mediacms`.
-
-Additional wsl commands to manage subsystems.  
-```
-wsl -l -v # list all linux systems 
-wsl --unregister Ubuntu... # remove a system
-```
-
-### Full guide
 
 There are two ways to run MediaCMS, through Docker Compose and through installing it on a server via an automation script that installs and configures all needed services. For more details:
 

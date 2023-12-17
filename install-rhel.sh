@@ -44,7 +44,7 @@ if [[ -f /etc/os-release ]]; then
 fi
 
 if [[ $osVersion == *"fedora"* ]] || [[ $osVersion == *"rhel"*  ]] || [[ $osVersion == *"centos"* ]] || [[ *"rocky"* ]]; then
-	yum install -y epel-release https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm yum-utils
+	yum install -y epel-release yum-utils # yum install -y epel-release https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm yum-utils
 	yum-config-manager --enable powertools
 	yum install -y python3-virtualenv python39-devel redis postgresql postgresql-server nginx git gcc vim unzip ImageMagick python3-certbot-nginx certbot wget xz ffmpeg policycoreutils-devel cmake gcc gcc-c++ wget git bsdtar
 else

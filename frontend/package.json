@@ -7,8 +7,8 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "start": "mediacms-scripts development --config=./config/mediacms.config.js --host=0.0.0.0 --port=8088",
-    "dist": "mediacms-scripts rimraf ./dist && mediacms-scripts build --config=./config/mediacms.config.js --env=dist"
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && mediacms-scripts development --config=./config/mediacms.config.js --host=0.0.0.0 --port=8088",
+    "dist": "set NODE_OPTIONS=--openssl-legacy-provider && mediacms-scripts rimraf ./dist && mediacms-scripts build --config=./config/mediacms.config.js --env=dist"
   },
   "browserslist": [
     "cover 99.5%"
