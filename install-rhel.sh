@@ -44,9 +44,9 @@ if [[ -f /etc/os-release ]]; then
 fi
 
 if [[ $osVersion == *"fedora"* ]] || [[ $osVersion == *"rhel"*  ]] || [[ $osVersion == *"centos"* ]] || [[ *"rocky"* ]]; then
-	dnf install -y epel-release https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm yum-utils
+	yum install -y epel-release https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm yum-utils
 	yum-config-manager --enable powertools
-	dnf install -y python3-virtualenv python39-devel redis postgresql postgresql-server nginx git gcc vim unzip ImageMagick python3-certbot-nginx certbot wget xz ffmpeg policycoreutils-devel cmake gcc gcc-c++ wget git bsdtar
+	yum install -y python3-virtualenv python39-devel redis postgresql postgresql-server nginx git gcc vim unzip ImageMagick python3-certbot-nginx certbot wget xz ffmpeg policycoreutils-devel cmake gcc gcc-c++ wget git bsdtar
 else
     echo "unsupported or unknown os"
     exit -1
@@ -115,7 +115,8 @@ python manage.py loaddata fixtures/encoding_profiles.json
 python manage.py loaddata fixtures/categories.json
 python manage.py collectstatic --noinput
 
-ADMIN_PASS=`python -c "import secrets;chars = 'abcdefghijklmnopqrstuvwxyz0123456789';print(''.join(secrets.choice(chars) for i in range(10)))"`
+# ADMIN_PASS=`python -c "import secrets;chars = 'abcdefghijklmnopqrstuvwxyz0123456789';print(''.join(secrets.choice(chars) for i in range(10)))"`
+ADMIN_PASS = 'admin'
 echo "from users.models import User; User.objects.create_superuser('admin', 'admin@example.com', '$ADMIN_PASS')" | python manage.py shell
 
 echo "from django.contrib.sites.models import Site; Site.objects.update(name='$FRONTEND_HOST', domain='$FRONTEND_HOST')" | python manage.py shell

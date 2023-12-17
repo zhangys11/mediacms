@@ -16,9 +16,9 @@ A demo is available at https://demo.mediacms.io
 ## Screenshots
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/mediacms-io/mediacms/main/docs/images/index.jpg" width="340">
-    <img src="https://raw.githubusercontent.com/mediacms-io/mediacms/main/docs/images/video.jpg" width="340">
-    <img src="https://raw.githubusercontent.com/mediacms-io/mediacms/main/docs/images/embed.jpg" width="340">
+    <img src="docs/images/index.jpg" width="340">
+    <img src="docs/images/video.jpg" width="340">
+    <img src="docs/images/embed.jpg" width="340">
 </p>
 
 ## Features
@@ -87,12 +87,34 @@ Visit [Releases Page](https://github.com/mediacms-io/mediacms/releases) for deta
 
 ## Installation / Maintanance
 
-There are two ways to run MediaCMS, through Docker Compose and through installing it on a server via an automation script that installs and configures all needed services. Find the related pages:
+### Quick Start using WSL2 Ubuntu-22.04
+
+``` 
+sudo mkdir /home/mediacms.io
+sudo cp -r /mnt/c/Users/eleve/Documents/codex/mediacms /home/mediacms.io
+
+# change to linux line change to fix the " $'\r': command not found " error
+vim install.sh
+:set ff=unix
+:wq
+
+sudo bash ./install.sh
+```
+
+After a restart, run `sudo sudo systemctl start nginx` or `sudo systemctl start mediacms`.
+
+Additional wsl commands to manage subsystems.  
+```
+wsl -l -v # list all linux systems 
+wsl --unregister Ubuntu... # remove a system
+```
+
+### Full guide
+
+There are two ways to run MediaCMS, through Docker Compose and through installing it on a server via an automation script that installs and configures all needed services. For more details:
 
 * [Single Server](docs/admins_docs.md#2-server-installation) page
 * [Docker Compose](docs/admins_docs.md#3-docker-installation) page
-
-  A complete guide can be found on the blog post [How to self-host and share your videos in 2021](https://medium.com/@MediaCMS.io/how-to-self-host-and-share-your-videos-in-2021-14067e3b291b).
 
 ## Configuration
 

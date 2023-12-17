@@ -6,10 +6,10 @@ DEBUG = False
 
 # PORTAL NAME, this is the portal title and
 # is also shown on several places as emails
-PORTAL_NAME = "MediaCMS"
-PORTAL_DESCRIPTION = ""
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "Europe/London"
+PORTAL_NAME = "Shenzhen ROP Media Center"
+PORTAL_DESCRIPTION = "ROP教学多媒体中心"
+LANGUAGE_CODE = "zh-cn" # "en-us"
+TIME_ZONE = "Asia/Shanghai" # "Europe/London"
 
 # who can add media
 # valid options include 'all', 'email_verified', 'advancedUser'
