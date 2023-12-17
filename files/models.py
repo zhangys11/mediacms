@@ -120,7 +120,7 @@ class Media(models.Model):
 
     add_date = models.DateTimeField("Date produced", blank=True, null=True, db_index=True)
 
-    allow_download = models.BooleanField(default=True, help_text="Whether option to download media is shown")
+    allow_download = models.BooleanField(default=False, help_text="Whether option to download media is shown")
 
     category = models.ManyToManyField("Category", blank=True, help_text="Media can be part of one or more categories")
 

@@ -16,9 +16,15 @@ A demo is available at https://demo.mediacms.io
 
 ``` 
 sudo mkdir /home/mediacms.io
-sudo cp -r /mnt/c/Users/eleve/Documents/codex/mediacms /home/mediacms.io
+sudo cp -r /mnt/c/Users/eleve/Documents/codex/mediacms /home/mediacms.io  or 
+git clone https://github.com/zhangys11/mediacms
 
-# change to linux line change to fix the " $'\r': command not found " error
+cd frontend # revise the front end files if needed
+npm install 
+npm run dist # publish frontend files under dist to static
+
+
+# OPTIONAL: change to linux line change to fix the " $'\r': command not found " error
 vim install.sh
 :set ff=unix
 :wq
@@ -28,10 +34,47 @@ sudo bash ./install.sh
 
 After a restart, run `sudo sudo systemctl start nginx` or `sudo systemctl start mediacms`.
 
-Additional wsl commands to manage subsystems.  
+Additional wsl commands to manage WSL systems.  
 ```
 wsl -l -v # list all linux systems 
 wsl --unregister Ubuntu... # remove a system
+```
+
+## Tweak/Configure after installation
+
+1. add a super user / administrator  
+
+```
+source /home/mediacms.io/bin/activate # activate the virtual env
+sudo /home/mediacms.io/bin/python3 manage.py createsuperuser # must use sudo with python3's full path
+```
+
+2. change an existing super user's password
+
+```
+source /home/mediacms.io/bin/activate # activate the virtual env
+sudo /home/mediacms.io/bin/python3 manage.py shell
+(InteractiveConsole)
+>>> from users.models import User
+>>> u = User.objects.filter(username='admin')[0]
+>>> u.set_password('admin')
+>>> u.save()
+>>> exit()
+```
+
+3. configure whether allow download by default
+
+```
+sudo nano files/models.py
+revise this line: allow_download = models.BooleanField(default=False, ...
+sudo systemctl restart mediacms
+```
+
+4. Others
+
+```
+Login as admin and goto http://localhost/admin/
+Categories, tags, users, etc. can be configured here.
 ```
 
 ## Screenshots
