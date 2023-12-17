@@ -101,20 +101,35 @@ cp deploy/local_install/celery_short.service /etc/systemd/system/celery_short.se
 cp deploy/local_install/celery_beat.service /etc/systemd/system/celery_beat.service && systemctl enable celery_beat &&systemctl start celery_beat
 cp deploy/local_install/mediacms.service /etc/systemd/system/mediacms.service && systemctl enable mediacms.service && systemctl start mediacms.service
 
+
+# make a backup before replacing the conf files.
+while true; do
+    read -p "
+You are about to replace system conf files. Make sure to back up beforehand. Enter yes or no.
+" yn
+    case $yn in
+        [Yy]* ) echo "OK!"; break;;
+        [Nn]* ) echo "Exit..."; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 mkdir -p /etc/letsencrypt/live/mediacms.io/
 mkdir -p /etc/letsencrypt/live/$FRONTEND_HOST
 mkdir -p /etc/nginx/sites-enabled
 mkdir -p /etc/nginx/sites-available
 mkdir -p /etc/nginx/dhparams/
+
 rm -rf /etc/nginx/conf.d/default.conf
 rm -rf /etc/nginx/sites-enabled/default
+
 cp deploy/local_install/mediacms.io_fullchain.pem /etc/letsencrypt/live/$FRONTEND_HOST/fullchain.pem
 cp deploy/local_install/mediacms.io_privkey.pem /etc/letsencrypt/live/$FRONTEND_HOST/privkey.pem
-cp deploy/local_install/dhparams.pem /etc/nginx/dhparams/dhparams.pem
+cp deploy/local_install/dhparams.pem /etc/nginx/dhparams/dhparams.pem # Diffie–Hellman (D-H) key exchange (TLS) the server generates a prime p and a generator g, which is a primitive root modulo p.
 cp deploy/local_install/mediacms.io /etc/nginx/sites-available/mediacms.io
 ln -s /etc/nginx/sites-available/mediacms.io /etc/nginx/sites-enabled/mediacms.io
 cp deploy/local_install/uwsgi_params /etc/nginx/sites-enabled/uwsgi_params
-cp deploy/local_install/nginx.conf /etc/nginx/
+cp deploy/local_install/nginx.conf /etc/nginx/ # Use with caution
 systemctl stop nginx
 systemctl start nginx
 
